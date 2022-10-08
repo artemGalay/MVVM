@@ -9,6 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    private var viewModel: GreetingViewModelProtocol! {
+        didSet {
+            viewModel.greetingDidChange = { [unowned self]  viewModel in
+                self.nameLabel.text = viewModel.greeting
+            }
+        }
+    }
+
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .red
@@ -25,14 +33,6 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         return button
     }()
-
-    private var viewModel: GreetingViewModelProtocol! {
-        didSet {
-            viewModel.greetingDidChange = { [unowned self]  viewModel in
-                self.nameLabel.text = viewModel.greeting
-            }
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
