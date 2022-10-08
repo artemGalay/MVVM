@@ -17,7 +17,7 @@ protocol GreetingViewModelProtocol: AnyObject {
 class GreetingViewModel: GreetingViewModelProtocol {
     var greeting: String? {
         didSet {
-            greetingDidChange?(self )
+            greetingDidChange?(self)
         }
     }
 
